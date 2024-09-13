@@ -1,4 +1,7 @@
 from algorithm import aStar, best, dijkstra, bellman_ford, neighbors
+from static import show
+
+show.draw()
 
 # Definir el nodo inicial y el nodo objetivo
 ini = 'Tauramena'
