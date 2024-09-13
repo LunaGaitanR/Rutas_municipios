@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from algorithm import neighbors
 
-def draw():
+def draw(path):
     df=neighbors.getData()
     G=nx.Graph()
     G.add_nodes_from(neighbors.getGraph())
@@ -23,7 +23,7 @@ def draw():
         )
     ))
 
-    # Agregar las aristas (ejemplo simplificado)
+    # Agregar las aristas
     for edge in G.edges():
         x0, y0 = df.loc[df['municipio'] == edge[0], ['longitud', 'latitud']].values[0]
         x1, y1 = df.loc[df['municipio'] == edge[1], ['longitud', 'latitud']].values[0]
@@ -33,6 +33,19 @@ def draw():
             lat=[y0, y1],
             marker=go.scattermapbox.Marker(size=10),
             line=dict(width=2, color='red')
+        ))
+        
+    for i in range(len(path) - 1):
+        city1 = path[i]
+        city2 = path[i+1]
+        x0, y0 = df.loc[df['municipio'] == city1, ['longitud', 'latitud']].values[0]
+        x1, y1 = df.loc[df['municipio'] == city2, ['longitud', 'latitud']].values[0]
+        fig.add_trace(go.Scattermapbox(
+            mode="lines",
+            lon=[x0, x1],
+            lat=[y0, y1],
+            marker=go.scattermapbox.Marker(size=10),
+            line=dict(width=2, color='green')
         ))
 
     # Personalizar el mapa
