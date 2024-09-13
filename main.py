@@ -1,4 +1,4 @@
-from algorithm import aStar, best, dijkstra, neighbors
+from algorithm import aStar, best, dijkstra, bellman_ford, neighbors
 
 # Definir el nodo inicial y el nodo objetivo
 ini = 'Tauramena'
@@ -26,5 +26,12 @@ else:
 path_dijkstra = dijkstra.dijkstra(graph, ini, goal)
 if path_dijkstra:
     print("Path Dijkstra found:", path_dijkstra)
+else:
+    print("No path found between", ini, "and", goal)
+
+# Ejecutar Bellman-Ford y mostrar el resultado
+path_bellman_ford = bellman_ford.bellmanFord(graph, ini, goal)
+if path_bellman_ford:
+    print("Path Bellman-Ford found:", path_bellman_ford)
 else:
     print("No path found between", ini, "and", goal)
