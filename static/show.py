@@ -1,31 +1,18 @@
 import networkx as nx
 import pandas as pd
-import requests
 import plotly.graph_objects as go
+from algorithm import neighbors
 
-# Suponiendo que tienes un DataFrame df con las columnas 'municipio', 'latitud', 'longitud'
-# y un grafo G creado con NetworkX
-
-# Crear un mapa base
-
-def request():
-
-    # URL de tu endpoint en Postman
-    url = "http://127.0.0.1:8000/api/location/?place="
-
-    # Hacer la solicitud HTTP
-    response = requests.get(url)
-
-    # Convertir la respuesta JSON a un diccionario de Python
-    data = response.json()
-
-    # Crear un DataFrame a partir del diccionario
-    df = pd.DataFrame(data)
-
-    # Ejemplo de cómo podría verse el DataFrame si la respuesta JSON es una lista de diccionarios
-    # [{'municipio': 'Bogotá', 'latitud': 4.6097, 'longitud': -74.0817}, ...]
-    print(df.head())
 def draw():
+    df=neighbors.getData()
+    G=nx.Graph()
+    G.add_nodes_from(neighbors.getGraph())
+    
+    for city, neighbors_dict in neighbors.getGraph().items():
+        G.add_node(city)
+        for neighbor, distance in neighbors_dict.items():
+            G.add_edge(city, neighbor, weight=distance)
+            
     fig = go.Figure(go.Scattermapbox(
         lat=df['latitud'],
         lon=df['longitud'],

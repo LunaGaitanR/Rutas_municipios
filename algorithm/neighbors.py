@@ -1,3 +1,5 @@
+import pandas as pd
+
 def getGraph():
     graph={
         #'CiudadOrigen':{'Vecino1': distancia,'vecino2':d},
@@ -68,3 +70,26 @@ def getPosition():
         'Yopal':280
     }
     return position
+
+def getData():
+    data = {'municipio': ['Bogotá', 'Acacías', 'Aguadas', 'Aipe', 'Campoalegre', 
+                          'Chía', 'Chocontá', 'Garzón', 'Gigante', 'Hato Corozal', 
+                          'Ibague', 'La Calera', 'La Dorada', 'Manizales', 'Marmato', 
+                          'Neira', 'Palermo', 'Paz de Ariporo', 'Pitalito', 'Pore', 
+                          'Puerto Rico', 'Rivera', 'Salamina', 'San Martin', 'Sopo', 
+                          'Tauramena', 'Ubaté', 'Villeta', 'Vistahermosa', 'Yopal'],
+        'latitud': [4.602063, 3.98695, 5.61161,3.22222,2.68489,
+                    4.85876,5.14468,2.19593,2.38677,6.033591,
+                    4.441879, 4.819197, 5.44783,5.06889,5.474703,
+                    5.1665000,2.8916700,5.88111,1.85371,5.726564,
+                    1.909939, 2.77717,5.40806,3.698531,4.90806,
+                    5.01667,5.3093300,5.01278,2.7694498, 5.33775],
+        'longitud': [-74.102579, -73.75797, -75.45624,-75.23667,-75.32311,
+                     -74.05866,-73.68578,-75.62777,-75.54531,-71.603512,
+                     -75.236949,-73.969131,-74.66311,-75.51738,-75.601047,
+                      -75.5200100, -75.4375000,-71.8917,-76.05071,-71.993942,
+                      -75.157217,-75.25642, -75.4878,-73.697350, -73.9403,
+                      -72.75,-73.8157500,-74.4731,-73.6917796804736,-72.39586]}
+    df=pd.DataFrame(data)
+    return df
+        
