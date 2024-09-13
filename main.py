@@ -1,4 +1,4 @@
-from algorithm import aStar, best, dijkstra, bellman_ford, neighbors
+from algorithm import aStar, best, dijkstra, bellman_ford, kruskal, neighbors
 
 # Definir el nodo inicial y el nodo objetivo
 ini = 'Tauramena'
@@ -35,3 +35,10 @@ if path_bellman_ford:
     print("Path Bellman-Ford found:", path_bellman_ford)
 else:
     print("No path found between", ini, "and", goal)
+
+# Ejecutar Kruskal y mostrar el resultado
+mst, total_cost = kruskal.kruskal(graph)
+print("\nMST found by Kruskal:")
+for edge in mst:
+    print(f"{edge[0]} -- {edge[1]}: {edge[2]}")
+print(f"Total cost of MST: {total_cost}")
