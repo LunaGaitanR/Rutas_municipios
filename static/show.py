@@ -1,5 +1,4 @@
 import networkx as nx
-import pandas as pd
 import plotly.graph_objects as go
 from algorithm import neighbors
 
