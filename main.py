@@ -1,4 +1,7 @@
 from algorithm import aStar, best, dijkstra, bellman_ford, kruskal, neighbors
+from static import show
+
+show.draw()
 
 # Definir el nodo inicial y el nodo objetivo
 ini = 'Tauramena'
@@ -19,6 +22,12 @@ else:
 path_best = best.greedyBestFirstSearch(graph, ini, goal, position)
 if path_best:
     print("Path Greedy found:", path_best)
+path = aStar.aStar(graph,ini,goal,neighbors.getPosition())
+
+show.draw()
+
+if path:
+    print("Path A* found:", path)
 else:
     print("No path found between", ini, "and", goal)
 
