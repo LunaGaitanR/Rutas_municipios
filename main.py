@@ -1,4 +1,4 @@
-from algorithm import aStar, best, dijkstra, bellman_ford, kruskal, neighbors
+from algorithm import aStar, best, dijkstra, bellman_ford, kruskal, prim, neighbors
 from static import show
 
 show.draw()
@@ -51,3 +51,10 @@ print("\nMST found by Kruskal:")
 for edge in mst:
     print(f"{edge[0]} -- {edge[1]}: {edge[2]}")
 print(f"Total cost of MST: {total_cost}")
+
+# Ejecutar Prim y mostrar el resultado
+mst_prim, total_cost_prim = prim.prim(graph, ini)  # Iniciar Prim desde 'Tauramena' (o cualquier otro nodo)
+print("\nMST found by Prim:")
+for edge in mst_prim:
+    print(f"{edge[0]} -- {edge[1]}: {edge[2]}")
+print(f"Total cost of MST (Prim): {total_cost_prim}")
