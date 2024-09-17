@@ -2,8 +2,6 @@ from algorithm import aStar, best, dijkstra, bellman_ford, kruskal, prim, neighb
 from static import show
 import sys
 
-#show.draw()
-
 # Definir el nodo inicial y el nodo objetivo
 ini = 'Tauramena'
 goal = 'Bogotá'
@@ -12,69 +10,43 @@ goal = 'Bogotá'
 graph = neighbors.getGraph()
 position = neighbors.getPosition()
 
-# Ejecutar A* y mostrar el resultado
+# Ejecutar los algoritmos de búsqueda y mostrar los resultados
 path_aStar = aStar.aStar(graph, ini, goal, position)
-if path_aStar:
-    print("Path A* found:", path_aStar)
-else:
-    print("No path found between", ini, "and", goal)
-
-
-# Ejecutar Greedy Best-First Search y mostrar el resultado
 path_best = best.greedyBestFirstSearch(graph, ini, goal, position)
-if path_best:
-    print("Path Greedy found:", path_best)
-path = aStar.aStar(graph,ini,goal,neighbors.getPosition())
-
-# Ejecutar Dijkstra y mostrar el resultado
 path_dijkstra = dijkstra.dijkstra(graph, ini, goal)
-if path_dijkstra:
-    print("Path Dijkstra found:", path_dijkstra)
-else:
-    print("No path found between", ini, "and", goal)
-
-# Ejecutar Bellman-Ford y mostrar el resultado
 path_bellman_ford = bellman_ford.bellmanFord(graph, ini, goal)
-if path_bellman_ford:
-    print("Path Bellman-Ford found:", path_bellman_ford)
-else:
-    print("No path found between", ini, "and", goal)
 
-# Ejecutar Kruskal y mostrar el resultado
-mst, total_cost = kruskal.kruskal(graph)
-print("\nMST found by Kruskal:")
-for edge in mst:
-    print(f"{edge[0]} -- {edge[1]}: {edge[2]}")
-print(f"Total cost of MST: {total_cost}")
+# Ejecutar Kruskal y Prim
+mst_kruskal, total_cost_kruskal = kruskal.kruskal(graph)
+mst_prim, total_cost_prim = prim.prim(graph, ini)
 
-# Ejecutar Prim y mostrar el resultado
-mst_prim, total_cost_prim = prim.prim(graph, ini)  # Iniciar Prim desde 'Tauramena' (o cualquier otro nodo)
-print("\nMST found by Prim:")
-for edge in mst_prim:
-    print(f"{edge[0]} -- {edge[1]}: {edge[2]}")
-print(f"Total cost of MST (Prim): {total_cost_prim}")
-    
-#Menú
-opcion =0
-while opcion!=5:
+# Menú
+opcion = ""
+while opcion != "7":
     print("\nMenú de opciones:")
     print("1. A*")
     print("2. Greedy")
     print("3. Dijkstra")
     print("4. Bellman-Ford")
-    print("5. Salir")
+    print("5. Kruskal (MST)")
+    print("6. Prim (MST)")
+    print("7. Salir")
 
     opcion = input("Ingrese la opción deseada: ").upper()
 
     if opcion == "1":
-        show.draw(path_aStar)
+        show.draw(path_aStar)  # Mostrar camino de A*
     elif opcion == "2":
-        show.draw(path_best)
+        show.draw(path_best)  # Mostrar camino de Greedy
     elif opcion == "3":
-        show.draw(path_dijkstra)
+        show.draw(path_dijkstra)  # Mostrar camino de Dijkstra
     elif opcion == "4":
-        show.draw(path_bellman_ford)
+        show.draw(path_bellman_ford)  # Mostrar camino de Bellman-Ford
     elif opcion == "5":
+        show.draw_mst(mst_kruskal)  # Mostrar MST de Kruskal
+    elif opcion == "6":
+        show.draw_mst(mst_prim)  # Mostrar MST de Prim
+    elif opcion == "7":
         print("Saliendo del programa...")
         sys.exit()
     else:
